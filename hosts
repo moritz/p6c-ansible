@@ -1,0 +1,8 @@
+[master]
+master.p6c.org ansible_ssh_user=root
+
+[www]
+www.p6c.org    ansible_ssh_user=root
+
+[hack]
+hack.p6c.org   ansible_ssh_user=root
