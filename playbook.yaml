@@ -1,0 +1,32 @@
+---
+- hosts: master
+  tasks:
+  - apt: name=openntpd state=latest
+  - service: name=openntpd state=started enabled=yes
+
+- hosts: www
+  tasks:
+  - apt: name=apache2 state=latest
+  - service: name=apache2 state=started enabled=yes
+  - apache2_module: state=present name=proxy
+    notify:
+    - restart apache2
+  - apache2_module: state=present name=proxy_http
+    notify:
+    - restart apache2
+  - apache2_module: state=present name=include
+    notify:
+    - restart apache2
+  - apache2_module: state=present name=negotiation
+    notify:
+    - restart apache2
+  - apache2_module: state=present name=autoindex
+    notify:
+    - restart apache2
+  - apache2_module: state=present name=alias
+    notify:
+    - restart apache2
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
