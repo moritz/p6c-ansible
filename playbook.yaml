@@ -5,8 +5,11 @@
   - service: name=openntpd state=started enabled=yes
 
 - hosts: www
+  roles:
+    - sbitmedia.fail2ban
   tasks:
   - apt: name=apache2 state=latest
+  - apt: name=fail2ban state=latest
   - service: name=apache2 state=started enabled=yes
   - apache2_module: state=present name=proxy
     notify:
@@ -26,6 +29,16 @@
   - apache2_module: state=present name=alias
     notify:
     - restart apache2
+  - fail2ban_jail:
+      args:
+        name: ssh-jail
+        enabled: true
+        filter: sshd
+        port: ssh
+        logpath: /var/log/auth.log
+        maxretry: 6
+        bantime: 600
+    
 
   handlers:
     - name: restart apache2
