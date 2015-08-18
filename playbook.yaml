@@ -35,6 +35,7 @@
   tasks:
   - apt: name=ack-grep state=present
   - apt: name=build-essential state=present
+  - apt: name=cabal-install state=present
   - apt: name=curl state=present
   - apt: name=fail2ban state=present
   - apt: name=git-man state=present
