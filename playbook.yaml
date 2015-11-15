@@ -33,23 +33,24 @@
 
 - hosts: hack
   tasks:
-  - apt: name=ack-grep state=present
-  - apt: name=build-essential state=present
-  - apt: name=cabal-install state=present
-  - apt: name=curl state=present
-  - apt: name=fail2ban state=present
-  - apt: name=git-man state=present
-  - apt: name=git state=present
-  - apt: name=git-svn state=present
-  - apt: name=gnupg2 state=present
-  - apt: name=irssi state=present
-  - apt: name=nodejs state=present
-  - apt: name=npm state=present
-  - apt: name=python-pygments state=present
-  - apt: name=rsync state=present
-  - apt: name=screen state=present
-  - apt: name=strace state=present
-  - apt: name=sudo state=present
-  - apt: name=tmux state=present
-  - apt: name=unzip state=present
-  - apt: name=wget state=present
+  - apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+    name: Install debian packages
+    with_items:
+        - build-essential
+        - cabal-install
+        - curl
+        - fail2ban
+        - git-man
+        - git
+        - git-svn
+        - gnupg2
+        - irssi
+        - nodejs
+        - python-pygments
+        - rsync
+        - screen
+        - strace
+        - sudo
+        - tmux
+        - unzip
+        - wget
