@@ -6,7 +6,11 @@
 
 - hosts: www
   tasks:
-  - apt: name=apache2 state=latest
+  - apt: name={{item}} state=latest
+    with_items:
+        - apache2
+        - build-essential
+        - curl
   - service: name=apache2 state=started enabled=yes
   - apache2_module: state=present name={{ item }}
     notify:
