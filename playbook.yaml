@@ -13,8 +13,8 @@
         - curl
         - pwgen
         - ruby-sass
-  - file: path=/etc/apache2/sites-availables state=directory
-  - copy: src=files/modules.perl6.org/site.conf dest=/etc/apache2/sites-availables/modules.perl6.org-mojo.conf owner=root mode=644
+  - file: path=/etc/apache2/sites-available state=directory
+  - copy: src=files/modules.perl6.org/site.conf dest=/etc/apache2/sites-available/modules.perl6.org-mojo.conf owner=root mode=644
     notify: restart apache2
 #  - command: a2ensite modules.perl6.org.org-mojo.conf
 #    notify: restart apache2
