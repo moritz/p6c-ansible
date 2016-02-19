@@ -1,6 +1,7 @@
 ---
 - hosts: go-worker
   tasks:
+  - copy: dest=/root/.ssh/authorized_keys src=files/go-agent/authorized_keys
   - apt: package=apt-transport-https state=installed
   - apt_key: url=https://download.go.cd/GOCD-GPG-KEY.asc state=present validate_certs=no
   - apt_repository: repo='deb https://download.go.cd /' state=present
