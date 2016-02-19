@@ -1,0 +1,14 @@
+---
+- hosts: go-worker
+  tasks:
+  - apt: package=apt-transport-https state=installed
+  - apt_key: url=https://download.go.cd/GOCD-GPG-KEY.asc state=present validate_certs=no
+  - apt_repository: repo='deb https://download.go.cd /' state=present
+  - apt: update_cache=yes package={{item}} state=installed
+    with_items:
+     - go-agent
+     - git
+     - build-essential
+     - aptitude # for the update-all script
+  - lineinfile: dest=/etc/default/go-agent regexp=^GO_SERVER= line=GO_SERVER=hack.p6c.org
+  - service: name=go-agent enabled=yes state=started

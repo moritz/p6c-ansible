@@ -1,8 +1,14 @@
 [master]
-master.p6c.org ansible_ssh_user=root
+master.p6c.org
 
 [www]
-www.p6c.org    ansible_ssh_user=root
+www.p6c.org
 
 [hack]
-hack.p6c.org   ansible_ssh_user=root
+hack.p6c.org
+
+[go-worker]
+go-worker01.p6c.org
+
+[all:vars]
+ansible_ssh_user=root
