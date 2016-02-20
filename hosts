@@ -9,6 +9,7 @@ hack.p6c.org
 
 [go-worker]
 go-worker01.p6c.org
+go-worker02.p6c.org
 
 [all:vars]
 ansible_ssh_user=root
